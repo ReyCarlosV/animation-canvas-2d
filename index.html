@@ -23,27 +23,27 @@
 
     <div class="glass p-4 mb-4">
 
-      <div class="row align-items-center">
+      <div class="row align-items-end">
 
-        <div class="col-md-3 mb-3 mb-md-0">
-          <label class="form-label">Cantidad de círculos</label>
+        <div class="col-md-2 mb-3">
+          <label class="form-label text-truncate">Cantidad</label>
           <input type="range" id="cantidad" class="form-range" min="1" max="50" value="10">
           <span id="valorCantidad">10</span>
         </div>
 
-        <div class="col-md-3 mb-3 mb-md-0">
-          <label class="form-label">Ancho canvas</label>
+        <div class="col-md-2 mb-3">
+          <label class="form-label text-truncate">Ancho</label>
           <input type="range" id="ancho" class="form-range" min="200" max="1000" value="600">
           <span id="valorAncho">600</span>
         </div>
 
-        <div class="col-md-3 mb-3 mb-md-0">
-          <label class="form-label">Alto canvas</label>
+        <div class="col-md-2 mb-3">
+          <label class="form-label text-truncate">Alto</label>
           <input type="range" id="alto" class="form-range" min="200" max="600" value="400">
           <span id="valorAlto">400</span>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-3 mb-3">
           <label class="form-label">Modo de Gravedad</label>
           <select id="efecto" class="form-select bg-dark text-white border-secondary">
             <option value="baja-gravedad">Gravedad baja (Aleatorio)</option>
@@ -51,6 +51,14 @@
             <option value="sup-der">Aventar desde Arriba-Derecha</option>
             <option value="inf-izq">Aventar desde Abajo-Izquierda</option>
             <option value="inf-der">Aventar desde Abajo-Derecha</option>
+          </select>
+        </div>
+
+        <div class="col-md-3 mb-3">
+          <label class="form-label">Efecto Visual</label>
+          <select id="estela" class="form-select bg-dark text-white border-secondary">
+            <option value="sin-estela">Normal (Sin estela)</option>
+            <option value="con-estela">Con Estela (Rastro)</option>
           </select>
         </div>
 

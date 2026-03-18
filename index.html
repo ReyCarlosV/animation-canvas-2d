@@ -23,27 +23,35 @@
 
     <div class="glass p-4 mb-4">
 
-      <div class="row">
+      <div class="row align-items-center">
 
-        <!-- Cantidad -->
-        <div class="col-md-4">
+        <div class="col-md-3 mb-3 mb-md-0">
           <label class="form-label">Cantidad de círculos</label>
           <input type="range" id="cantidad" class="form-range" min="1" max="50" value="10">
           <span id="valorCantidad">10</span>
         </div>
 
-        <!-- Ancho -->
-        <div class="col-md-4">
+        <div class="col-md-3 mb-3 mb-md-0">
           <label class="form-label">Ancho canvas</label>
           <input type="range" id="ancho" class="form-range" min="200" max="1000" value="600">
           <span id="valorAncho">600</span>
         </div>
 
-        <!-- Alto -->
-        <div class="col-md-4">
+        <div class="col-md-3 mb-3 mb-md-0">
           <label class="form-label">Alto canvas</label>
           <input type="range" id="alto" class="form-range" min="200" max="600" value="400">
           <span id="valorAlto">400</span>
+        </div>
+
+        <div class="col-md-3">
+          <label class="form-label">Modo de Gravedad</label>
+          <select id="efecto" class="form-select bg-dark text-white border-secondary">
+            <option value="baja-gravedad">Gravedad baja (Aleatorio)</option>
+            <option value="sup-izq">Aventar desde Arriba-Izquierda</option>
+            <option value="sup-der">Aventar desde Arriba-Derecha</option>
+            <option value="inf-izq">Aventar desde Abajo-Izquierda</option>
+            <option value="inf-der">Aventar desde Abajo-Derecha</option>
+          </select>
         </div>
 
       </div>

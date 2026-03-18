@@ -25,3 +25,11 @@ canvas {
   display: block;
   margin-top: 20px;
 }
+
+/* 🖤 Sobrescribimos el estilo glass solo para el Canvas */
+#canvas.glass {
+  background: rgba(255, 255, 255, 0.05); /* Ligeramente más transparente */
+  border: 3px solid rgba(0, 0, 0, 0.85); /* Contorno negro fuerte */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7); /* Sombra moderna para que resalte */
+  border-radius: 15px;
+}

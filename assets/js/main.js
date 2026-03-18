@@ -23,6 +23,7 @@ function actualizarCanvas() {
 
 // 🔵 TU CLASE (RESPETADA)
 // 🔵 TU CLASE (RESPETADA Y CORREGIDA)
+// 🔵 TU CLASE (CON GRAVEDAD BAJA)
 class Circle {
   constructor(x, y, radius, color, text, speed) {
     this.posX = x;
@@ -32,17 +33,22 @@ class Circle {
     this.text = text;
     this.speed = speed;
 
-    this.dx = 1 * this.speed;
+    // Aumenté un poco la velocidad horizontal inicial para que se muevan más
+    this.dx = (Math.random() < 0.5 ? 1 : -1) * (this.speed * 1.5); 
     this.dy = 1 * this.speed;
+    
+    // 🌍 Nuevas propiedades físicas
+    this.gravity = 0.15; // Gravedad baja (puedes subirlo para que caigan más rápido)
+    this.bounce = 0.85;  // Retiene el 85% de su energía al rebotar contra el suelo
   }
 
   draw(context) {
     context.beginPath();
 
-    // 1. PRIMERO trazamos la forma geométrica (el círculo)
+    // 1. Forma geométrica
     context.arc(this.posX, this.posY, this.radius, 0, Math.PI * 2);
 
-    // 2. LUEGO definimos y aplicamos el Glass effect (Relleno)
+    // 2. Glass effect
     const gradient = context.createRadialGradient(
       this.posX,
       this.posY,
@@ -53,17 +59,17 @@ class Circle {
     );
 
     gradient.addColorStop(0, "rgba(255,255,255,0.6)");
-    gradient.addColorStop(1, this.color); // Aquí se aplica tu color dinámico
+    gradient.addColorStop(1, this.color);
 
     context.fillStyle = gradient;
-    context.fill(); // Rellena el círculo que acabamos de trazar
+    context.fill();
 
-    // 3. LUEGO dibujamos el Borde
+    // 3. Borde
     context.lineWidth = 2;
     context.strokeStyle = "rgba(255,255,255,0.4)";
     context.stroke();
 
-    // 4. FINALMENTE dibujamos el Texto
+    // 4. Texto
     context.fillStyle = "#000";
     context.textAlign = "center";
     context.textBaseline = "middle";
@@ -76,25 +82,34 @@ class Circle {
   update(context) {
     this.draw(context);
 
-    // 🔥 MISMA LÓGICA PERO USANDO canvas dinámico
+    // ☄️ Aplicamos la gravedad tirando del círculo hacia abajo
+    this.dy += this.gravity;
+
+    // 🔥 LÓGICA DE REBOTES ACTUALIZADA
+
+    // Pared derecha
     if (this.posX + this.radius > canvas.width) {
       this.posX = canvas.width - this.radius;
       this.dx = -this.dx;
     }
 
+    // Pared izquierda
     if (this.posX - this.radius < 0) {
       this.posX = this.radius;
       this.dx = -this.dx;
     }
 
+    // Techo
     if (this.posY - this.radius < 0) {
       this.posY = this.radius;
-      this.dy = -this.dy;
+      this.dy = -this.dy; 
     }
 
+    // Suelo
     if (this.posY + this.radius > canvas.height) {
       this.posY = canvas.height - this.radius;
-      this.dy = -this.dy;
+      // Al tocar el suelo, invierte la dirección pero pierde energía (multiplicando por this.bounce)
+      this.dy = -this.dy * this.bounce; 
     }
 
     this.posX += this.dx;

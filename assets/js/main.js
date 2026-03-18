@@ -22,6 +22,7 @@ function actualizarCanvas() {
 }
 
 // 🔵 TU CLASE (RESPETADA)
+// 🔵 TU CLASE (RESPETADA Y CORREGIDA)
 class Circle {
   constructor(x, y, radius, color, text, speed) {
     this.posX = x;
@@ -38,7 +39,10 @@ class Circle {
   draw(context) {
     context.beginPath();
 
-    // 🔷 Glass effect (solo visual)
+    // 1. PRIMERO trazamos la forma geométrica (el círculo)
+    context.arc(this.posX, this.posY, this.radius, 0, Math.PI * 2);
+
+    // 2. LUEGO definimos y aplicamos el Glass effect (Relleno)
     const gradient = context.createRadialGradient(
       this.posX,
       this.posY,
@@ -49,18 +53,17 @@ class Circle {
     );
 
     gradient.addColorStop(0, "rgba(255,255,255,0.6)");
-    gradient.addColorStop(1, this.color);
+    gradient.addColorStop(1, this.color); // Aquí se aplica tu color dinámico
 
     context.fillStyle = gradient;
-    context.fill();
+    context.fill(); // Rellena el círculo que acabamos de trazar
 
-    // Borde
+    // 3. LUEGO dibujamos el Borde
     context.lineWidth = 2;
     context.strokeStyle = "rgba(255,255,255,0.4)";
-    context.arc(this.posX, this.posY, this.radius, 0, Math.PI * 2);
     context.stroke();
 
-    // Texto (tu lógica original)
+    // 4. FINALMENTE dibujamos el Texto
     context.fillStyle = "#000";
     context.textAlign = "center";
     context.textBaseline = "middle";
@@ -114,7 +117,7 @@ function generarCirculos(cantidad) {
     let color = `hsl(${Math.random() * 360}, 70%, 50%)`;
 
     circles.push(
-      new Circle(x, y, radius, color, "Tec" + (i + 1), speed)
+      new Circle(x, y, radius, color, i + 1, speed)
     );
   }
 }

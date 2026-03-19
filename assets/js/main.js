@@ -182,7 +182,7 @@ function generarCirculos(cantidad) {
     }
 
     circles.push(
-      new Circle(x, y, radius, color, "Tec" + (i + 1), speed, dx, dy)
+      new Circle(x, y, radius, color, i + 1, speed, dx, dy)
     );
   }
 }
